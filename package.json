@@ -1,5 +1,5 @@
 {
-  "name": "ts-project",
+  "name": "session",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,11 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "typescript": "^2.4.2"
-  },
   "devDependencies": {
     "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   }
 }
