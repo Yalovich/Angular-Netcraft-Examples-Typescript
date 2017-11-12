@@ -2,3 +2,9 @@
 /node_modules
 src/node_modules
 bundle.js
+.idea/Angular-Session2-Solution.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/markdown-navigator/profiles_settings.xml
+src/package-lock.json

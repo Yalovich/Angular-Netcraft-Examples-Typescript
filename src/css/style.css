@@ -1,0 +1,78 @@
+#cross
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background-color: #03a9f4;
+    z-index: -1;
+}
+
+#cross::after
+{
+    content: " ";
+    position: absolute;
+    bottom: -50vh;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background-color: #fff;
+    transform-origin: right center;
+    transform: skewY(7deg);
+}
+
+.container
+{
+    margin-top: 50px;
+}
+
+.card-action
+{
+    text-align: right;
+}
+
+.artists
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.artists li
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 49%;
+    padding: 10px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+}
+.artists li>div
+{
+    flex: 1 0 0;
+}
+.artists li>div:last-child
+{
+    flex: 11 0 0;
+}
+.artists li>div figure
+{
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.artists li>div figure img
+{
+    width: 100%;
+}
+.details-wrapper
+{
+    margin-left: 10px;
+}
+.details-wrapper>span, .details-wrapper>a
+{
+    display: block;
+}

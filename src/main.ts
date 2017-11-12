@@ -1,107 +1,97 @@
-import UserModel from "./user.model";
+import Dom from "./utils/dom"
+import FormController from "./controllerts/form.controller";
+import ArtistController from "./controllerts/artist.controller";
+import ArtistModel from "./models/artist.model";
+
+import ARTIST_TEMPALTE from "./artists.template";
 
 class App
 {
-    name: string;
-    // version;
+    dom: Dom;
+    formController: FormController;
+    artistController: ArtistController;
 
+    listContainerSelector: string = ".playlist ul";
+
+    /**
+     * init relevant classes
+     * @return App
+     */
     constructor()
     {
-        console.log("App Constructor");
+        this.dom = new Dom();
+        this.formController = new FormController();
+        this.artistController = new ArtistController();
+    }
 
+    /**
+     * booting up the app
+     * @return void
+     */
+    boostrap()
+    {
+        this.artistController.loadArtists();
 
+        this.buildList();
+        this.attachMouseEvents();
+    }
+
+    /**
+     * attaching mouse events to relevant buttons / elements
+     * @return void
+     */
+    attachMouseEvents()
+    {
+        this.dom.addListener("#add", "click", this.onAddClick.bind(this));
+    }
+
+    /**
+     * dispatched when user click on add button and wants to add
+     * the artist to its local Storage
+     * @param event
+     */
+    onAddClick(event: MouseEvent)
+    {
+        let newArtist = this.formController.loadForm();
+        this.artistController.saveArtist(newArtist);
+
+        this.buildList();
+    }
+
+    /**
+     * Build un-ordered list of artists
+     * @return void
+     */
+    buildList()
+    {
+        let artists: ArtistModel[] = this.artistController.loadArtists();
+        let domParser: DOMParser = new DOMParser();
+
+        this.clearList();
+
+        artists.forEach((artist: ArtistModel, index: number) => {
+
+            if(!artist.name || artist.name.length == 0) return;
+
+            let currentTpl = ARTIST_TEMPALTE;
+
+            currentTpl = currentTpl.replace("{{name}}", artist.name).replace("{{image}}", artist.image).replace("{{url}}", artist.url);
+
+            let listItem: HTMLElement = document.createElement("li");
+            listItem.innerHTML = currentTpl;
+
+            this.dom.elm(this.listContainerSelector).appendChild(listItem);
+        });
+    }
+
+    /**
+     * clear list from child elements
+     * @return void
+     */
+    clearList()
+    {
+        this.dom.elm(`${this.listContainerSelector}`).innerHTML = "";
     }
 }
 
-var myApp = new App();
-
-let age: number = 20.2;
-let isLegal: boolean = true;
-
-myApp.name = `idan yalovich`;
-
-let users: UserModel[] = [];
-let phones: Array<number> = [];
-
-/* create users */
-let admin: UserModel = new UserModel();
-admin.name = "Yam Regev";
-
-users.push(admin);
-
-/* tuple */
-let event: [number, string] = [20, "PageView"];
-
-/* enum */
-enum Colors {
-    Red = 100,
-    Blue,
-    Green
-}
-
-let name: any = "Any";
-
-
-/* Fucntions */
-
-/**
- *
- * @param name
- * @param age [OPTIONAL]
- */
-let describeMe = function(name: string, age?: number) : string
-{
-    let me: string = `ME: ${name}`;
-
-    if(age) return me.concat(` (${age})`);
-
-    return me;
-};
-
-let me: string = describeMe(myApp.name);
-
-/* OLD WAY */
-setTimeout(function() {
-
-}, 2000);
-
-/* ES6 (2015) */
-setTimeout(() => {
-
-
-}, 2000);
-
-/* OLD WAY */
-window.addEventListener("load", function(event: Event) {
-
-}, false);
-
-/* NEW WAY */
-window.addEventListener("load", (event: Event) => {
-
-}, false);
-
-
-/* Classes */
-
-let loggedInUser: UserModel = new UserModel("Yarin", 35);
-
-console.log(loggedInUser.describe());
-
-
-/* Vars (var & let) Vs. Const */
-
-// let version: string = "1.0.2";
-
-const VERSION: string = "200";
-console.log(VERSION);
-
-
-/* DOM INTERACTION */
-
-document.querySelector("#action").addEventListener("click", (event: MouseEvent) => {
-    
-    document.querySelector("span").innerHTML = "WOW!";
-
-}, false);
-
+(new App()).boostrap();

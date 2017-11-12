@@ -2,13 +2,54 @@
 <html>
     <head>
         <title>Angular-Netcraft-Examples-Typescript</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="src/css/style.css" />
     </head>
     <body>
-        <h1>Angular-Netcraft-Examples-Typescript</h1>
+        <div id="cross"></div>
 
-        <span></span>
-        <button id="action">CLICK ME</button>
+        <div class="container">
+            <h1>My Playlist</h1>
 
-        <script type="text/javascript" src="src/bundle.js"></script>
+            <div class="form card darken-1">
+                <div class="card-content">
+                    <h4>Add New artist</h4>
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="field-wrapper">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" placeholder="George Clinton"/>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="field-wrapper">
+                                <label for="image">Image URL</label>
+                                <input type="text" id="image" placeholder="https://path/to/image.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="field-wrapper">
+                                <label for="url">Youtube URL</label>
+                                <input type="text" id="url" placeholder="https://youtube.url" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="card-action">
+                    <button class="waves-effect waves-light btn-flat" id="clear">clear</button>
+                    <button class="waves-effect waves-light btn-flat" id="add">add</button>
+                </footer>
+            </div>
+
+            <div class="playlist">
+                <ul class="artists"></ul>
+            </div>
+
+
+        </div>
+
+        <script type="text/javascript" src="dist/bundle.js"></script>
     </body>
 </html>
