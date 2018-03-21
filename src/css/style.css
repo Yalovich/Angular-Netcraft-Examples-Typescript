@@ -37,6 +37,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .artists li
 {
@@ -45,6 +46,7 @@
     justify-content: flex-start;
     min-width: 49%;
     padding: 10px;
+    margin-bottom: 10px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
 }
 .artists li>div
@@ -63,10 +65,8 @@
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
-}
-.artists li>div figure img
-{
-    width: 100%;
+    background-size: cover;
+    background-position: center center;
 }
 .details-wrapper
 {

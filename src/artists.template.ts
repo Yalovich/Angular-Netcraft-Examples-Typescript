@@ -2,7 +2,7 @@
 const ARTIST_TEMPALTE = `
     
         <div>
-            <figure><img src="{{image}}" /></figure>
+            <figure style="background-image: url({{image}});"></figure>
         </div>
         <div class="details-wrapper">
             <span class="title">{{name}}</span>
